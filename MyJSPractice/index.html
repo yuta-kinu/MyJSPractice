@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Practice</title>
+  <style>
+    body{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      background: skyblue;
+      cursor: pointer;
+      transition: 0.8s;
+      margin:0 8px 8px 0;
+      text-align: center;
+      line-height: 100px;
+    }
+    .win{
+      background: yellow;
+      border-radius: 50%;
+      transform: rotate(1440deg);
+    }
+    .lose {
+      transform: scale(0.9);
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    'use strict';
+
+    const num = 5;
+
+    //0以上1未満*5=0以上5未満の数をランダムで選んだのち、Math.floorで小数点以下を切り捨てる
+    //0,1,2,3,4のうち、1つがwinner（当たり）となる
+    const winner = Math.floor(Math.random() * num);
+
+    for(let i = 0; i < num; i++){
+      const div = document.createElement('div');
+      div.classList.add('box');
+      if(i === winner){
+        div.dataset.result = 'win';
+      } else {
+        div.dataset.result = 'lose';
+      }
+      div.textContent = i;
+      div.addEventListener('click',function(){
+        if (div.dataset.result === 'win'){
+          div.textContent = 'Win!';
+          div.classList.add('win');
+        } else {
+          div.textContent = 'Lose!';
+          div.classList.add('lose');
+        }
+      });
+
+      document.body.appendChild(div);
+    }
+
+
+  </script>
+</body>
+</html>
